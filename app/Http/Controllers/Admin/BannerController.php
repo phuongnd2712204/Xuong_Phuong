@@ -66,7 +66,7 @@ class BannerController extends Controller
     public function edit(Banner $banner)
     {
         //
-        return view('admin.banners.edit');
+        return view('admin.banners.edit', compact('banner'));
     }
 
     /**
@@ -75,6 +75,21 @@ class BannerController extends Controller
     public function update(UpdateBannerRequest $request, Banner $banner)
     {
         //
+        $data = $request->except('image');
+        if($request->hasFile('image')){
+         $data ['image'] = Storage::put('banners', $request->file('image'));
+
+            if(!empty($banner->image)&& Storage::exists('$banner->image'))
+            {
+                Storage::delete($banner->image);
+            }
+        }else
+        {
+
+         $data ['image'] = $banner->image;
+        }
+        $banner->update($data);
+        return redirect()->route('admin.banners.index');
     }
 
     /**
@@ -83,5 +98,7 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         //
+        $banner->delete();
+        return redirect()->route('admin.banners.index');
     }
 }

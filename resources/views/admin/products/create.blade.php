@@ -71,8 +71,8 @@
                                                id="price_sale">
                                     </div>
                                     <div class="mt-3">
-                                        <label for="catelogue_id" class="form-label">Catalogues</label>
-                                        <select type="text" class="form-select" name="catelogue_id" id="catelogue_id">
+                                        <label for="catalogue_id" class="form-label">Catalogues</label>
+                                        <select type="text" class="form-select" name="catalogue_id" id="catalogue_id">
                                             @foreach($catelogues as $id => $name)
                                                 <option value="{{ $id }}">{{ $name }}</option>
                                             @endforeach
@@ -177,7 +177,7 @@
                                                     </td>
                                                     <td>
                                                         <input type="text" class="form-control"
-                                                               value="1"
+                                                               value="0"
                                                                name="product_variants[{{ $sizeID . '-' . $colorID }}][quatity]">
                                                     </td>
                                                     <td>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Models\Banner;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,11 @@ Route::get('/', function () {
     $products = Product::query() -> latest('id')->limit(12)->get();
     return view('welcome', compact('products'));
 })->name('welcome');
+
+Route::get('/layouts', function () {
+    $banners = Banner::query()->limit(1)->get();
+    return view('layouts.header', compact('banners'));
+})->name('layouts');
 
 Route::get('/admin', function(){
     return 'Đây là admin';

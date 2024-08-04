@@ -20,7 +20,8 @@
                 <a href="{{route('admin.banners.edit', $item)}}"><button>Sửa</button></a>
                 <form action="{{route('admin.banners.destroy', $item)}}" method="post">
                     @csrf
-                    <button type="submit">Xóa</button>
+                    @method('DELETE')
+                    <button type="submit" onclick="confirm('Are you sure!')">Xóa</button>
                 </form>
             </td>
         </tr>
